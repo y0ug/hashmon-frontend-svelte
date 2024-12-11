@@ -1,5 +1,6 @@
 import { error } from "@sveltejs/kit";
-import type { AuthStatusData, HashDetailResponse, HashesResponse, HttpResp, Provider } from "./types";
+import type { AuthStatusData, HashDetailResponse, HashesResponse, HttpResp, Provider, StatsResponse } from "./types";
+import type Stats from "./components/Stats.svelte";
 type Fetch = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 
 const API_BASE_URL = 'http://127.0.0.1:8808';
@@ -45,11 +46,22 @@ export async function getLogout(fetch: Fetch): Promise<AuthStatusData> {
 }
 
 
+export async function getAllHashesPagination(fetch: Fetch, page: number, per_page: number, filter: string): Promise<HashesResponse> {
+  return apiFetch<HashesResponse>(fetch,
+    `/api/hashes?page=${page}&per_page=${per_page}&found=${filter}`, { method: 'GET' });
+}
 
 export async function getAllHashes(fetch: Fetch): Promise<HashesResponse> {
   return apiFetch<HashesResponse>(fetch,
     '/api/hashes', { method: 'GET' });
 }
+
+export async function getStats(fetch: Fetch): Promise<StatsResponse> {
+  return apiFetch<StatsResponse>(fetch,
+    '/api/stats', { method: 'GET' });
+}
+
+
 
 
 export async function getHashDetail(fetch: Fetch, sha256: string): Promise<HashDetailResponse> {

@@ -1,10 +1,15 @@
-import { getAllHashes, deleteHash, apiFetch } from '$lib/api';
+import { getAllHashes, deleteHash, apiFetch, getAllHashesPagination } from '$lib/api';
 import type { NewHash, HttpResp } from '$lib/types';
 import type { PageServerLoad, Actions } from './$types';
 
-export const load: PageServerLoad = async ({ params, fetch }) => {
-  return getAllHashes(fetch);
-}
+// export const load: PageServerLoad = async ({ params, fetch, url }) => {
+//   const pageParam = url.searchParams.get('page');
+//   const perPageParam = url.searchParams.get('per_page');
+//   const page = pageParam ? parseInt(pageParam, 10) : 1;
+//   const perPage = perPageParam ? parseInt(perPageParam, 10) : 10;
+//
+//   return { data: await getAllHashesPagination(fetch, page, perPage) };
+// }
 
 export const actions = {
   create: async ({ request, fetch }) => {

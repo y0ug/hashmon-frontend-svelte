@@ -21,6 +21,10 @@
   };
 </script>
 
+<svelte:head>
+  <title>HashMon</title>
+</svelte:head>
+
 <Header {user} {logout} />
 <div class="flex justify-center mt-20">
   {@render children()}

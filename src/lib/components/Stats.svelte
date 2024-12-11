@@ -2,7 +2,7 @@
   import dayjs from "dayjs";
   import relativeTime from "dayjs/plugin/relativeTime";
   import updateLocale from "dayjs/plugin/updateLocale";
-
+  import type { StatsResponse } from "$lib/types";
   dayjs.extend(relativeTime);
   dayjs.extend(updateLocale);
   dayjs.updateLocale("en", {
@@ -22,6 +22,8 @@
       yy: "%d years",
     },
   });
+
+  let { stats }: { stats: StatsResponse } = $props();
   let totalHash = 1234;
   let activeMonitor = 987;
   let alertToday = 12;
@@ -39,7 +41,7 @@
       </div>
     </div>
     <div class="stat-title">Total Hashes</div>
-    <div class="stat-value text-primary">{totalHash}</div>
+    <div class="stat-value text-primary">{stats.total_hashes}</div>
   </div>
 
   <!-- Active Monitors -->
@@ -49,8 +51,8 @@
         <i class="fas fa-check text-success text-2xl"></i>
       </div>
     </div>
-    <div class="stat-title">Active Monitor</div>
-    <div class="stat-value text-secondary">{activeMonitor}</div>
+    <div class="stat-title">Total Found</div>
+    <div class="stat-value text-secondary">{stats.total_hashes_found}</div>
   </div>
 
   <!-- Alerts Today -->
@@ -61,7 +63,7 @@
       </div>
     </div>
     <div class="stat-title">Alert Today</div>
-    <div class="stat-value text-secondary">{alertToday}</div>
+    <div class="stat-value text-secondary">{stats.hashes_found_today}</div>
   </div>
 
   <!-- Last Check -->
@@ -72,6 +74,8 @@
       </div>
     </div>
     <div class="stat-title">Last Check</div>
-    <div class="stat-value text-secondary">{dayjs(lastCheck).fromNow()}</div>
+    <div class="stat-value text-secondary">
+      {dayjs(stats.global_last_check_at).fromNow()}
+    </div>
   </div>
 </div>

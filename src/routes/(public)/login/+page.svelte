@@ -5,6 +5,10 @@
   let providers = data.providers;
 </script>
 
+<svelte:head>
+  <title>HashMon - Login</title>
+</svelte:head>
+
 <div class="hero bg-base-200 min-h-screen">
   <div class="hero-content flex-col lg:flex-row-reverse">
     <div class="text-center lg:text-left">

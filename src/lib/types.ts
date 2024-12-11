@@ -43,6 +43,10 @@ export interface HashStatus {
 
 export interface HashesResponse {
   hashes: HashStatus[];
+  per_page: number;
+  page: number;
+  total: number;
+  total_pages: number;
 }
 
 export interface HashDetailResponse {
@@ -53,4 +57,11 @@ export interface NewHash {
   sha256: string;
   filename: string;
   build_id: string;
+}
+
+export interface StatsResponse {
+  total_hashes: number;
+  global_last_check_at: string; // ISO string
+  total_hashes_found: number;
+  hashes_found_today: number;
 }
