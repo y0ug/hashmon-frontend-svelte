@@ -21,11 +21,11 @@
       >
         <div class="">
           <div class="label">
-            <span class="label-text">SHA256*</span>
+            <span class="label-text">Hash*</span>
           </div>
           <input
             type="text"
-            name="sha256"
+            name="hash"
             class="input input-bordered w-full focus:outline-primary"
             disabled={creating}
             required
@@ -33,22 +33,11 @@
         </div>
         <div class="">
           <div class="label">
-            <span class="label-text">Filename</span>
+            <span class="label-text">comment</span>
           </div>
           <input
             type="text"
-            name="filename"
-            class="input input-bordered w-full focus:outline-primary"
-            disabled={creating}
-          />
-        </div>
-        <div class="">
-          <div class="label">
-            <span class="label-text">Build ID</span>
-          </div>
-          <input
-            type="text"
-            name="build_id"
+            name="comment"
             class="input input-bordered w-full focus:outline-primary"
             disabled={creating}
           />

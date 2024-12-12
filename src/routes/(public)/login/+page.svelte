@@ -3,6 +3,14 @@
 
   let { data }: { data: PageData } = $props();
   let providers = data.providers;
+
+  function getIconClasses(providerName: string): string {
+    const brands = ["google", "github"];
+    if (brands.includes(providerName.toLowerCase())) {
+      return `fa-brands fa-${providerName.toLowerCase()} text-primary`;
+    }
+    return "fa-solid fa-right-to-bracket text-primary";
+  }
 </script>
 
 <svelte:head>
@@ -23,25 +31,11 @@
           {:else}
             {#each providers as provider}
               <form action="/login/{provider.name}" method="POST">
-                <button
-                  class="btn btn-primary w-full flex items-center justify-center"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 mr-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <!-- Replace with provider-specific icon if available -->
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Login with {provider.name}
+                <button class="btn btn-neutral w-full">
+                  <i class={getIconClasses(provider.name)}></i>
+                  <span class="ml-2">
+                    Login with {provider.name}
+                  </span>
                 </button>
               </form>
             {/each}

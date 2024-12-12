@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { HashStatus } from "$lib/types";
+  import { processHash } from "$lib/utils";
   import dayjs from "dayjs";
   import relativeTime from "dayjs/plugin/relativeTime";
   import updateLocale from "dayjs/plugin/updateLocale";
@@ -25,24 +26,32 @@
   });
 
   let { hash }: { hash: HashStatus } = $props();
+  const { truncatedHash, type } = processHash(hash.hash);
 </script>
 
 <tr>
   <td>
     <div class="flex space-x-2">
-      <a href="/hash/{hash.sha256}" class="btn btn-ghost btn-sm text-primary">
+      <a
+        aria-label="view"
+        href="/hash/{hash.hash}"
+        class="btn btn-ghost btn-sm text-primary"
+      >
         <i class="fas fa-eye"></i>
       </a>
       <form action="?/delete" method="POST">
-        <input type="hidden" name="sha256" value={hash.sha256} />
-        <button type="submit" class="btn btn-ghost btn-sm text-error">
+        <input type="hidden" name="hash" value={hash.hash} />
+        <button
+          aria-label="delete"
+          type="submit"
+          class="btn btn-ghost btn-sm text-error"
+        >
           <i class="fas fa-trash"></i>
         </button>
       </form>
     </div>
   </td>
-  <td>{hash.filename}</td>
-  <td>{hash.build_id}</td>
+  <td>{hash.comment}</td>
   <td>{dayjs(hash.last_check_at).fromNow()}</td>
   <!-- <td>{hash.alerted_by?.join(", ") || "None"}</td> -->
   <td>
@@ -54,12 +63,18 @@
       <i class="fas fa-check-circle mr-1"></i>Active
     </span>
   </td>
-  <td>
+  <td title={type + " " + hash.hash}>
     <div class="flex items-center">
-      <span class="text-sm font-mono mr-2">{hash.sha256}</span>
-      <button class="btn btn-ghost btn-sm">
+      <span class={`hash-type ${type} text-sm font-mono mr-2 `}
+        >{truncatedHash}</span
+      >
+      <button aria-label="copy" class="btn btn-ghost btn-sm">
         <i class="fas fa-copy"></i>
       </button>
     </div>
   </td>
+  <!-- <td class={`hash-type ${type}`}>{type}</td> -->
 </tr>
+
+<style>
+</style>

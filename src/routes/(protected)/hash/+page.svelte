@@ -180,15 +180,14 @@
             <thead>
               <tr>
                 <th>Actions</th>
-                <th>Filename</th>
-                <th>Build ID</th>
+                <th>Comment</th>
                 <th>Last Checked</th>
                 <th>Status</th>
-                <th>SHA256</th>
+                <th>Hash</th>
               </tr>
             </thead>
             <tbody>
-              {#each hashes.hashes.filter((v) => !deleting.includes(v)) as hash (hash.sha256)}
+              {#each hashes.hashes.filter((v) => !deleting.includes(v)) as hash (hash.hash)}
                 <HashLine {hash} />
               {/each}
               <!-- Repeat <tr> for more rows -->

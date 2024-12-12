@@ -18,17 +18,17 @@ export async function apiFetch<T>(fetch: Fetch, input: RequestInfo | URL, init?:
     }
   }).then((res) => {
     if (!res.ok) {
-      throw new Error(res.statusText);
+      throw error(res.status, res.statusText);
     }
     return res.json() as Promise<HttpResp<T>>;
   }).then((data) => {
     if (data.status === 'success') {
       return data.data;
     }
-    throw new Error(data.message);
-  }).catch((reason) => {
-    console.error('apiFetch error:', reason);
-    error(500, reason);
+    throw error(500, data.message);
+  }).catch((res: Response) => {
+    console.error('apiFetch error:', res);
+    error(res.status, res.body?.message);
   });
 }
 

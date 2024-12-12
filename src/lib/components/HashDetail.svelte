@@ -8,16 +8,12 @@
   <h2 class="text-2xl font-bold mb-4">Hash Detail</h2>
   <ul class="list-none space-y-2">
     <li>
-      <strong>SHA256:</strong>
-      {hash.sha256}
+      <strong>Hash:</strong>
+      {hash.hash}
     </li>
     <li>
-      <strong>Filename:</strong>
-      {hash.filename}
-    </li>
-    <li>
-      <strong>Build ID:</strong>
-      {hash.build_id}
+      <strong>Comment:</strong>
+      {hash.comment}
     </li>
     <li>
       <strong>Last Checked:</strong>

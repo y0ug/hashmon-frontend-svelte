@@ -26,6 +26,6 @@
 </svelte:head>
 
 <Header {user} {logout} />
-<div class="flex justify-center mt-20">
+<div class="flex justify-center">
   {@render children()}
 </div>

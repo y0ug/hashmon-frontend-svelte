@@ -8,7 +8,7 @@
   let { user, logout }: Props = $props();
 </script>
 
-<nav class="navbar bg-base-100 shadow-lg fixed top-0 left-0 right-0 z-50">
+<nav class="navbar bg-base-300">
   <div class="navbar-start">
     <img
       class="h-8 w-auto"

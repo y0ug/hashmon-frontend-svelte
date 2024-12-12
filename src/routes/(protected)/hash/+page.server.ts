@@ -16,9 +16,8 @@ export const actions = {
     // Create a new hash entry
     const data = await request.formData();
     const newHash: NewHash = {
-      "sha256": data.get("sha256") as string,
-      "filename": data.get("filename") as string,
-      "build_id": data.get("build_id") as string,
+      "hash": data.get("hash") as string,
+      "comment": data.get("comment") as string,
     }
 
     // Inject the cookie of the user
@@ -38,8 +37,8 @@ export const actions = {
   },
   delete: async ({ request, fetch }) => {
     const data = await request.formData();
-    const sha256 = data.get("sha256") as string;
-    const res = await deleteHash(fetch, sha256);
+    const hash = data.get("hash") as string;
+    const res = await deleteHash(fetch, hash);
     return { success: true }
   }
 } satisfies Actions;

@@ -31,9 +31,8 @@ export interface RefreshTokenData {
 }
 
 export interface HashStatus {
-  sha256: string;
-  filename: string;
-  build_id: string;
+  hash: string;
+  comment: string;
   last_check_at: string; // ISO string
   providers: {
     [providerName: string]: boolean;
@@ -54,9 +53,8 @@ export interface HashDetailResponse {
 }
 
 export interface NewHash {
-  sha256: string;
-  filename: string;
-  build_id: string;
+  hash: string;
+  comment: string;
 }
 
 export interface StatsResponse {
